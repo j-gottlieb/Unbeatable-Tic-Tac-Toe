@@ -26,9 +26,11 @@ class App extends Component {
   }
 
   checkWin () {
-    const moves = this.state.moves
+
+    const {moves} = this.state
     const x = []
     const o = []
+    const size = Object.keys(moves).length
     for (const position in moves) {
       if (moves[`${position}`] === 'x') {
         x.push(parseInt(position))
@@ -47,6 +49,11 @@ class App extends Component {
         message: 'o win!',
         gameOver: true
       })
+    } else if (size === 9) {
+      this.setState({
+        message: 'Its a tie!',
+        gameOver: true
+      })
     }
   })
 
@@ -54,20 +61,30 @@ class App extends Component {
 
 handleClick (position) {
   if (!this.state.gameOver) {
-  if (!this.state.moves[`${position}`]) {
-    this.setState({ moves: {...this.state.moves, [`${position}`]: this.state.currentMove } }, function () {
-    this.checkWin()})
-    if (this.state.currentMove === 'x') {
-      this.setState({
-        currentMove: 'o'
-      })
-    } else {
-      this.setState({
-        currentMove: 'x'
-      })
+    if (!this.state.moves[`${position}`]) {
+      this.setState({ moves: {...this.state.moves, [`${position}`]: this.state.currentMove } }, function () {
+      this.checkWin()})
+      if (this.state.currentMove === 'x') {
+        this.setState({
+          currentMove: 'o'
+        })
+      } else {
+        this.setState({
+          currentMove: 'x'
+        })
+      }
     }
   }
 }
+
+
+restart () {
+  this.setState({
+    currentMove: 'x',
+    moves: {},
+    message: '',
+    gameOver: false
+  })
 }
 
   render() {
@@ -85,6 +102,7 @@ handleClick (position) {
       <React.Fragment>
       <main>
         <h1>Tic Tac Toe</h1>
+        <button onClick={() => this.restart()}>Start Over</button>
         <div className='gameboard'>
           {squares}
         </div>
