@@ -10,10 +10,10 @@ class Square extends Component {
   }
 
   render () {
-    const position = this.props.position
+    const {position, player} = this.props
 
     return (
-      <div className='square' onClick={() => this.props.handleClick(position)}>{this.props.position}</div>
+      <div className='square' onClick={() => this.props.handleClick(position)}>{player}</div>
     )
   }
 }

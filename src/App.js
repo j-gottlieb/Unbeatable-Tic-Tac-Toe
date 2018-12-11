@@ -29,9 +29,7 @@ class App extends Component {
 
 handleClick (position) {
   if (!this.state.moves[`${position}`]) {
-    const newProp = {...this.state.moves}
-    newProp[`${position}`] = this.state.currentMove;
-    this.setState({newProp})
+    this.setState({ moves: {...this.state.moves, [`${position}`]: this.state.currentMove } })
     if (this.state.currentMove === 'x') {
       this.setState({
         currentMove: 'o'
@@ -46,9 +44,10 @@ handleClick (position) {
 }
 
   render() {
+    // console.log(this.state.moves)
     const squares = []
     for (var i = 0; i < 9; i++) {
-      squares.push(<Square handleClick={(event) => this.handleClick(event)} key={i} position={i} />)
+      squares.push(<Square player={this.state.moves[`${i}`]} handleClick={(event) => this.handleClick(event)} key={i} position={i} />)
     }
     return (
       <React.Fragment>
