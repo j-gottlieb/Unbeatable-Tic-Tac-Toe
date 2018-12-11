@@ -8,15 +8,6 @@ class Square extends Component {
       box: ''
     }
   }
-  //
-  // componentDidMount() {
-  //
-  //   }
-  //
-  //   componentWillUnmount() {
-  //       // you need to unbind the same listener that was binded.
-  //       window.removeEventListener('scroll', this.onScroll, false);
-  //   }
 
   render () {
     const {position, player, handleClick} = this.props
