@@ -19,17 +19,44 @@ class App extends Component {
 
     this.state = {
       currentMove: 'x',
-      moves: {}
+      moves: {},
+      message: '',
+      gameOver: false
     }
   }
 
-  checkWin = () => {
-    console.log(this.state.moves)
+  checkWin () {
+    const moves = this.state.moves
+    const x = []
+    const o = []
+    for (const position in moves) {
+      if (moves[`${position}`] === 'x') {
+        x.push(parseInt(position))
+      } else {
+        o.push(parseInt(position))
+      }
+    }
+    winConditions.forEach(arr => {
+    if (arr.every(elem => x.indexOf(elem) > -1)) {
+      this.setState({
+        message: 'x win!',
+        gameOver: true
+      })
+    } else if (arr.every(elem => o.indexOf(elem) > -1)) {
+      this.setState({
+        message: 'o win!',
+        gameOver: true
+      })
+    }
+  })
+
   }
 
 handleClick (position) {
+  if (!this.state.gameOver) {
   if (!this.state.moves[`${position}`]) {
-    this.setState({ moves: {...this.state.moves, [`${position}`]: this.state.currentMove } })
+    this.setState({ moves: {...this.state.moves, [`${position}`]: this.state.currentMove } }, function () {
+    this.checkWin()})
     if (this.state.currentMove === 'x') {
       this.setState({
         currentMove: 'o'
@@ -40,22 +67,28 @@ handleClick (position) {
       })
     }
   }
-  this.checkWin()
+}
 }
 
   render() {
     // console.log(this.state.moves)
     const squares = []
     for (var i = 0; i < 9; i++) {
-      squares.push(<Square player={this.state.moves[`${i}`]} handleClick={(event) => this.handleClick(event)} key={i} position={i} />)
+      squares.push(<Square
+        player={this.state.moves[`${i}`]}
+        handleClick={(i) => this.handleClick(i)}
+        key={i}
+        position={i}
+        />)
     }
     return (
       <React.Fragment>
       <main>
-      <h1>Tic Tac Toe</h1>
-      <div className='gameboard'>
-        {squares}
-      </div>
+        <h1>Tic Tac Toe</h1>
+        <div className='gameboard'>
+          {squares}
+        </div>
+        <p>{this.state.message}</p>
       </main>
     </React.Fragment>
     )
