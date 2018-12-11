@@ -41,12 +41,12 @@ class App extends Component {
     winConditions.forEach(arr => {
     if (arr.every(elem => x.indexOf(elem) > -1)) {
       this.setState({
-        message: 'x win!',
+        message: 'x wins!',
         gameOver: true
       })
     } else if (arr.every(elem => o.indexOf(elem) > -1)) {
       this.setState({
-        message: 'o win!',
+        message: 'o wins!',
         gameOver: true
       })
     } else if (size === 9) {
@@ -66,13 +66,17 @@ handleClick (position) {
       this.checkWin()})
       if (this.state.currentMove === 'x') {
         this.setState({
-          currentMove: 'o'
+          currentMove: 'o',
+          message: "x's turn"
         })
       } else {
         this.setState({
-          currentMove: 'x'
+          currentMove: 'x',
+          message: "o's turn"
         })
       }
+    } else {
+      this.setState({ message: 'Someone already went there!'})
     }
   }
 }

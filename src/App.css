@@ -19,3 +19,9 @@
   display: inline-block;
   margin: 0;
 }
+
+.square-text {
+  text-align: center;
+  margin-top: 68px;
+  font-size: 50px;
+}

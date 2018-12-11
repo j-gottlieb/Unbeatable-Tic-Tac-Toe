@@ -21,7 +21,11 @@ class Square extends Component {
   render () {
     const {position, player, handleClick} = this.props
     return (
-      <div className='square' onClick={() => handleClick(position)}>{player}</div>
+      <div className='square' onClick={() => handleClick(position)}>
+        <div className='square-text'>
+          {player}
+        </div>
+      </div>
     )
   }
 }
