@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Square from './Game.js'
-const Ai = require('./Ai.js')
 
 const winConditions = [
   [0, 1, 2],
