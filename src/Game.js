@@ -14,7 +14,7 @@ class Square extends Component {
     return (
       <div className='square' onClick={() => handleClick(position)}>
         <div className='square-text'>
-          {player}
+          {typeof player !== 'number' && player}
         </div>
       </div>
     )
