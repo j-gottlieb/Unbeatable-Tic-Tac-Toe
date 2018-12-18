@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Square from './Game.js'
+import Header from './Header.js'
 
 const winConditions = [
   [0, 1, 2],
@@ -181,7 +182,7 @@ minimax (newBoard, player) {
 	return moves[bestMove];
 }
 
-restart () {
+restart = () => {
   this.setState({
     currentMove: this.human,
     moves: [0,1,2,3,4,5,6,7,8],
@@ -203,14 +204,14 @@ restart () {
     return (
       <React.Fragment>
       <main>
-        <h1>Tic Tac Toe</h1>
-        <button onClick={() => this.restart()}>Start Over</button>
-        <div className='gameboard'>
-          {squares}
+        <Header message={this.state.message} restart={this.restart}/>
+        <div className='container'>
+          <div className='gameboard'>
+            {squares}
+          </div>
         </div>
-        <p>{this.state.message}</p>
       </main>
-    </React.Fragment>
+      </React.Fragment>
     )
   }
 }
