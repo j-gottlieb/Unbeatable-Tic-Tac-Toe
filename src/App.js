@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Square from './Game.js'
 import Header from './Header.js'
+import Message from './Message.js'
 
 const winConditions = [
   [0, 1, 2],
@@ -209,6 +210,7 @@ restart = () => {
           <div className='gameboard'>
             {squares}
           </div>
+          <Message />
         </div>
       </main>
       </React.Fragment>

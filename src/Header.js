@@ -18,7 +18,7 @@ class Header extends Component  {
     return (
       <React.Fragment>
         <div className='header'>
-          <h1>Tic Tac Toe</h1>
+          <h1>Unbeatable Tic Tac Toe</h1>
           <div className='message' style={{color: this.colorPicker(this.props.message)}}>
             <p>{this.props.message}</p>
           </div>
