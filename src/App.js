@@ -98,13 +98,13 @@ handleClick (position) {
     if (typeof this.state.moves[position] === 'number') {
       const arr = this.state.moves
       arr[position] = this.human
+      this.gameOver()
+      this.aiTurn(this.bestSpot())
+      this.gameOver()
       this.setState({moves: arr})
     } else {
       this.setState({ message: 'Someone already went there!'})
     }
-    this.gameOver()
-    this.aiTurn(this.bestSpot())
-    this.gameOver()
   }
 }
 
