@@ -25,8 +25,7 @@ class message extends Component  {
             article on GeeksForGeeks.
           </p>
           <p>
-            If you somehow win, I would love to know about it! Hit me up on
-            <a href='https://www.linkedin.com/in/jesse-gottlieb/'>LinkedIn.</a>
+            If you somehow win, I would love to know about it! Hit me up on <a href='https://www.linkedin.com/in/jesse-gottlieb/'>LinkedIn.</a>
           </p>
         </div>
       </React.Fragment>
