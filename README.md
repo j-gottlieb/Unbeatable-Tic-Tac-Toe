@@ -1,44 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Welcome to Unbeatable Tic-Tac-Toe
 
-## Available Scripts
+I built this app as a challenge to myself to recreate tic-tac-toe quickly and efficiently without using the React tutorial as a guide. After I got the basic game working (just a user playing vs themselves) I decided to increase the challenge by implementing an AI using the minimax algorithm.
 
-In the project directory, you can run:
+I certainly did not try to recreate the algorithm from scratch. The difficulty came from applying what I learned in my research to the specific layout my game used. As can happen with recursive functions, I kept running into stack overflows, which I finally worked out after extensive rubber-ducking of my classmates.
 
-### `npm start`
+Over the course of heavily commenting the code and bugfixing, I learned a lot both about working with someone else's code and about how the minimax algorithm works.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In future iterations I hope to implement these features:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Multiple difficulty levels
+* PvP capability
+* Mobile friendliness

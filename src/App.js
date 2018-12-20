@@ -29,7 +29,7 @@ class App extends Component {
       moves: [0,1,2,3,4,5,6,7,8]
     }
   }
-
+// Check for a game outcome within the context of the minimax function
   checkWin (board, player) {
     const playerMoves = []
     let result = false
@@ -47,7 +47,7 @@ class App extends Component {
   })
   return result
   }
-
+// Check for outcome in the context of the actual game.
   gameOver () {
     const moves = this.state.moves
     const x = []
@@ -70,14 +70,15 @@ class App extends Component {
         o.push(i)
       }
     }
-    // Check for victory
+    // use hard-coded winConditions array to check outcome
     winConditions.forEach(arr => {
-      // check for defeat
+      // Check for victory
     if (arr.every(elem => x.indexOf(elem) > -1)) {
       this.setState({
         message: 'You win!',
         gameOver: true
       })
+      // check for defeat
     } else if (arr.every(elem => o.indexOf(elem) > -1)) {
       this.setState({
         message: 'You lose!',
@@ -92,8 +93,9 @@ class App extends Component {
     }
   })
   }
-
+// Handle a click inside the game board.
 handleClick (position) {
+  // Allow a move if the space isn't occupied and the game isn't over
   if (!this.state.gameOver) {
     if (typeof this.state.moves[position] === 'number') {
       const arr = this.state.moves
@@ -107,23 +109,18 @@ handleClick (position) {
     }
   }
 }
-
-emptySquares () {
-  const moves = this.state.moves.slice(0)
-  return moves.filter(a => typeof a === 'number')
-}
-
+// Call minimax function using the current board state
 bestSpot () {
   const moves = this.state.moves.slice(0)
   return this.minimax(moves, this.ai).index
 }
-
+// set the state to reflect the new ai move
 aiTurn (bestSpot) {
   const arr = this.state.moves
   arr[bestSpot] = this.ai
   this.setState({moves: arr})
 }
-
+// recursive function to find the best possible AI move given the current state of the board.
 minimax (newBoard, player) {
   // get available spots
 	const availSpots = newBoard.filter(a => typeof a === 'number')
@@ -182,7 +179,7 @@ minimax (newBoard, player) {
 	}
 	return moves[bestMove];
 }
-
+// reset the board to start a new game
 restart = () => {
   this.setState({
     currentMove: this.human,
@@ -194,6 +191,7 @@ restart = () => {
 
   render() {
     const squares = []
+    // create a gameboard
     for (var i = 0; i < 9; i++) {
       squares.push(<Square
         player={this.state.moves[`${i}`]}
