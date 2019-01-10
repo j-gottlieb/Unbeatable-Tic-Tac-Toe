@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Unbeatable-Tic-Tac-Toe/precache-manifest.9fc3fea5f1782ccacc9cfedd983f4d6b.js"
+  "/Unbeatable-Tic-Tac-Toe/precache-manifest.27b1236810b7a5f732218e1d478a2e49.js"
 );
 
 workbox.clientsClaim();

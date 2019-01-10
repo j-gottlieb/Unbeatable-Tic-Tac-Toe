@@ -1,13 +1,15 @@
 {
-  "main.css": "/Unbeatable-Tic-Tac-Toe/static/css/main.e8fd4b95.chunk.css",
-  "main.js": "/Unbeatable-Tic-Tac-Toe/static/js/main.cc7b5932.chunk.js",
-  "main.js.map": "/Unbeatable-Tic-Tac-Toe/static/js/main.cc7b5932.chunk.js.map",
-  "static/js/1.4d4949a9.chunk.js": "/Unbeatable-Tic-Tac-Toe/static/js/1.4d4949a9.chunk.js",
-  "static/js/1.4d4949a9.chunk.js.map": "/Unbeatable-Tic-Tac-Toe/static/js/1.4d4949a9.chunk.js.map",
+  "main.css": "/Unbeatable-Tic-Tac-Toe/static/css/main.0ebf0b96.chunk.css",
+  "main.js": "/Unbeatable-Tic-Tac-Toe/static/js/main.252e44f0.chunk.js",
+  "main.js.map": "/Unbeatable-Tic-Tac-Toe/static/js/main.252e44f0.chunk.js.map",
+  "static/css/1.08ff9b42.chunk.css": "/Unbeatable-Tic-Tac-Toe/static/css/1.08ff9b42.chunk.css",
+  "static/js/1.55541bcd.chunk.js": "/Unbeatable-Tic-Tac-Toe/static/js/1.55541bcd.chunk.js",
+  "static/js/1.55541bcd.chunk.js.map": "/Unbeatable-Tic-Tac-Toe/static/js/1.55541bcd.chunk.js.map",
   "runtime~main.js": "/Unbeatable-Tic-Tac-Toe/static/js/runtime~main.360c6e6c.js",
   "runtime~main.js.map": "/Unbeatable-Tic-Tac-Toe/static/js/runtime~main.360c6e6c.js.map",
-  "static/css/main.e8fd4b95.chunk.css.map": "/Unbeatable-Tic-Tac-Toe/static/css/main.e8fd4b95.chunk.css.map",
+  "static/css/main.0ebf0b96.chunk.css.map": "/Unbeatable-Tic-Tac-Toe/static/css/main.0ebf0b96.chunk.css.map",
+  "static/css/1.08ff9b42.chunk.css.map": "/Unbeatable-Tic-Tac-Toe/static/css/1.08ff9b42.chunk.css.map",
   "index.html": "/Unbeatable-Tic-Tac-Toe/index.html",
-  "precache-manifest.9fc3fea5f1782ccacc9cfedd983f4d6b.js": "/Unbeatable-Tic-Tac-Toe/precache-manifest.9fc3fea5f1782ccacc9cfedd983f4d6b.js",
+  "precache-manifest.27b1236810b7a5f732218e1d478a2e49.js": "/Unbeatable-Tic-Tac-Toe/precache-manifest.27b1236810b7a5f732218e1d478a2e49.js",
   "service-worker.js": "/Unbeatable-Tic-Tac-Toe/service-worker.js"
 }
