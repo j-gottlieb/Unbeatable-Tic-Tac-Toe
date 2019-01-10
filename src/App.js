@@ -26,7 +26,8 @@ class App extends Component {
       currentMove: this.human,
       message: '',
       gameOver: false,
-      moves: [0,1,2,3,4,5,6,7,8]
+      moves: [0,1,2,3,4,5,6,7,8],
+      difficulty: 'easy'
     }
   }
 // Check for a game outcome within the context of the minimax function
@@ -71,27 +72,32 @@ class App extends Component {
       }
     }
     // use hard-coded winConditions array to check outcome
-    winConditions.forEach(arr => {
+    let i = 0
+    while (!this.state.gameOver && i < winConditions.length) {
       // Check for victory
-    if (arr.every(elem => x.indexOf(elem) > -1)) {
+    if (winConditions[i].every(elem => x.indexOf(elem) > -1)) {
+      console.log(this.state.gameOver)
       this.setState({
         message: 'You win!',
         gameOver: true
       })
       // check for defeat
-    } else if (arr.every(elem => o.indexOf(elem) > -1)) {
+    } else if (winConditions[i].every(elem => o.indexOf(elem) > -1)) {
+      console.log(this.state.gameOver)
       this.setState({
         message: 'You lose!',
         gameOver: true
       })
       // check for tie
     } else if (tieValue() === 9) {
+      console.log(this.state.gameOver)
       this.setState({
         message: 'Its a tie!',
         gameOver: true
       })
     }
-  })
+    i++
+  }
   }
 // Handle a click inside the game board.
 handleClick (position) {
@@ -100,10 +106,12 @@ handleClick (position) {
     if (typeof this.state.moves[position] === 'number') {
       const arr = this.state.moves
       arr[position] = this.human
-      this.gameOver()
-      this.aiTurn(this.bestSpot())
-      this.gameOver()
       this.setState({moves: arr})
+      this.gameOver()
+      if (!this.state.gameOver) {
+        this.aiTurn(this.bestSpot())
+        this.gameOver()
+      }
     } else {
       this.setState({ message: 'Someone already went there!'})
     }
@@ -126,9 +134,17 @@ minimax (newBoard, player) {
 	const availSpots = newBoard.filter(a => typeof a === 'number')
   // if human player wins this round return -10
 	if (this.checkWin(newBoard, this.human)) {
-		return {score: -10};
+    if (this.state.difficulty === 'easy') {
+		  return {score: 10};
+    } else if (this.state.difficulty === 'hard') {
+      return {score: -10}
+    }
 	} else if (this.checkWin(newBoard, this.ai)) {
-		return {score: 10};
+    if (this.state.difficulty === 'easy') {
+		  return {score: -10};
+    } else if (this.state.difficulty === 'hard') {
+      return {score: 10}
+    }
 	} else if (availSpots.length === 0) {
 		return {score: 0};
 	}
