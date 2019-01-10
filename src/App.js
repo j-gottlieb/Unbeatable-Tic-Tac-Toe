@@ -78,7 +78,6 @@ class App extends Component {
       })
       if (conditions === 0 && val === 9)
         result = true
-        console.log(result)
       return result
     }
     // use hard-coded winConditions array to check outcome
