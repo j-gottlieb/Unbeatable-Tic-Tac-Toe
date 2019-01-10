@@ -28,7 +28,9 @@ class Header extends Component  {
           </div>
           <button onClick={() => this.props.restart()}>New Game</button>
           <div className={'difficulty'}>
-            <p>Choose Difficulty: </p>
+            <div className={'difficulty-label'}>
+              <p>Choose Difficulty: </p>
+            </div>
             <Dropdown
               className={'difficulty-dropdown'}
               options={difficultyOptions}

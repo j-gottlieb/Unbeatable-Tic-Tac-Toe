@@ -53,16 +53,6 @@ class App extends Component {
     const moves = this.state.moves
     const x = []
     const o = []
-    // tieValue is just the number of moves that have been made so far.
-    const tieValue = function () {
-      let val = 0
-      moves.forEach(move => {
-        if (typeof move !== 'number') {
-          val++
-        }
-      })
-      return val
-    }
     // populate arrays with all of the current moves for each player
     for (let i = 0; i < moves.length; i++) {
       if (moves[i] === this.human) {
@@ -71,26 +61,43 @@ class App extends Component {
         o.push(i)
       }
     }
+    // analyze tie state.
+    const tieValue = function () {
+      let result = false
+      let val = 0
+      let conditions = 0
+      moves.forEach(move => {
+        if (typeof move !== 'number') {
+          val++
+        }
+      })
+      winConditions.forEach(a => {
+        if (a.every(elem => x.indexOf(elem) > -1)) {
+          conditions++
+        }
+      })
+      if (conditions === 0 && val === 9)
+        result = true
+        console.log(result)
+      return result
+    }
     // use hard-coded winConditions array to check outcome
     let i = 0
     while (!this.state.gameOver && i < winConditions.length) {
       // Check for victory
     if (winConditions[i].every(elem => x.indexOf(elem) > -1)) {
-      console.log(this.state.gameOver)
       this.setState({
         message: 'You win!',
         gameOver: true
       })
       // check for defeat
     } else if (winConditions[i].every(elem => o.indexOf(elem) > -1)) {
-      console.log(this.state.gameOver)
       this.setState({
         message: 'You lose!',
         gameOver: true
       })
-      // check for tie
-    } else if (tieValue() === 9) {
-      console.log(this.state.gameOver)
+    }
+    else if (tieValue()) {
       this.setState({
         message: 'Its a tie!',
         gameOver: true
@@ -108,10 +115,8 @@ handleClick (position) {
       arr[position] = this.human
       this.setState({moves: arr})
       this.gameOver()
-      if (!this.state.gameOver) {
-        this.aiTurn(this.bestSpot())
-        this.gameOver()
-      }
+      this.aiTurn(this.bestSpot())
+      this.gameOver()
     } else {
       this.setState({ message: 'Someone already went there!'})
     }
@@ -120,7 +125,9 @@ handleClick (position) {
 // Call minimax function using the current board state
 bestSpot () {
   const moves = this.state.moves.slice(0)
-  return this.minimax(moves, this.ai).index
+  let numMoves = 0
+  moves.forEach(a => typeof a !== 'number' ? numMoves++ : '')
+  return this.minimax(moves, this.ai, numMoves).index
 }
 // set the state to reflect the new ai move
 aiTurn (bestSpot) {
@@ -128,8 +135,18 @@ aiTurn (bestSpot) {
   arr[bestSpot] = this.ai
   this.setState({moves: arr})
 }
+
+// randomMove () {
+//   const availSpots = []
+//   this.state.moves.forEach((a, i) => {
+//     if (typeof a === 'number')
+//       availSpots.push(i)
+//   })
+//   const randomIndex = Math.floor(Math.random() * availSpots.length)
+//   return availSpots[randomIndex]
+// }
 // recursive function to find the best possible AI move given the current state of the board.
-minimax (newBoard, player) {
+minimax (newBoard, player, numMoves) {
   // get available spots
 	const availSpots = newBoard.filter(a => typeof a === 'number')
   // if human player wins this round return -10
@@ -138,12 +155,20 @@ minimax (newBoard, player) {
 		  return {score: 10};
     } else if (this.state.difficulty === 'hard') {
       return {score: -10}
+    } else if (this.state.difficulty === 'medium' && numMoves < 4) {
+      return {score: -10}
+    } else if (this.state.difficulty === 'medium' && numMoves >= 4) {
+      return {score: 10}
     }
 	} else if (this.checkWin(newBoard, this.ai)) {
     if (this.state.difficulty === 'easy') {
 		  return {score: -10};
-    } else if (this.state.difficulty === 'hard') {
+    } else if (this.state.difficulty === 'hard' || this.state.difficulty === 'medium') {
       return {score: 10}
+    } else if (this.state.difficulty === 'medium' && numMoves < 4) {
+      return {score: 10}
+    } else if (this.state.difficulty === 'medium' && numMoves >= 4) {
+      return {score: -10}
     }
 	} else if (availSpots.length === 0) {
 		return {score: 0};
@@ -160,12 +185,12 @@ minimax (newBoard, player) {
 		newBoard[availSpots[i]] = player;
     // if human player, recursively call this function with ai player
 		if (player === this.human) {
-			const result = this.minimax(newBoard, this.ai);
+			const result = this.minimax(newBoard, this.ai, numMoves);
       // give this move a score
 			move.score = result.score;
 		} else {
       // if ai player, recursively call this function with human player
-			const result = this.minimax(newBoard, this.human);
+			const result = this.minimax(newBoard, this.human, numMoves);
 			move.score = result.score;
 		}
     // remove the player letter applied to the current index of this enumeration
@@ -209,11 +234,9 @@ chooseDifficulty = (difficulty) => {
   this.setState({
     difficulty: difficulty.value
   })
-  console.log(this.state.difficulty)
 }
 
   render() {
-    console.log(this.state)
     const squares = []
     // create a gameboard
     for (var i = 0; i < 9; i++) {
