@@ -2,6 +2,14 @@
   text-align: center;
 }
 
-.message{
+.message {
   height: 30px;
+}
+
+.difficulty {
+  margin: 0 auto;
+}
+
+.difficulty-dropdown {
+  width: 200px;
 }

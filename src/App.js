@@ -205,7 +205,15 @@ restart = () => {
   })
 }
 
+chooseDifficulty = (difficulty) => {
+  this.setState({
+    difficulty: difficulty.value
+  })
+  console.log(this.state.difficulty)
+}
+
   render() {
+    console.log(this.state)
     const squares = []
     // create a gameboard
     for (var i = 0; i < 9; i++) {
@@ -219,7 +227,11 @@ restart = () => {
     return (
       <React.Fragment>
       <main>
-        <Header message={this.state.message} restart={this.restart}/>
+        <Header
+          message={this.state.message}
+          restart={this.restart}
+          chooseDifficulty={this.chooseDifficulty}
+          currentDifficulty={this.state.difficulty}/>
         <div className='container'>
           <div className='gameboard'>
             {squares}
