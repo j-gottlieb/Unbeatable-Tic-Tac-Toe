@@ -71,11 +71,13 @@ class App extends Component {
           val++
         }
       })
+      // search for any win conditions
       winConditions.forEach(a => {
         if (a.every(elem => x.indexOf(elem) > -1)) {
           conditions++
         }
       })
+      // if no win conditions are met and the board is full it is a tie game
       if (conditions === 0 && val === 9)
         result = true
       return result

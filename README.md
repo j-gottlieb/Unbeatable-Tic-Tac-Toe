@@ -6,8 +6,11 @@ I certainly did not try to recreate the algorithm from scratch. The difficulty c
 
 Over the course of heavily commenting the code and bugfixing, I learned a lot both about working with someone else's code and about how the minimax algorithm works.
 
+After creating the unbeatable AI, I built a super easy mode, where it is impossible to lose. This was as simple as reversing the returns of the minimax function when easy mode was selected. From there, I moved on to make medium mode, which proved more difficult.
+
+I tried several versions that used a combination of random moves and hard mode AI moves. In the end, the iteration that felt the most balanced was using hard mode for the first 3 moves then switching to easy mode for the remaining 6. 
+
 In future iterations I hope to implement these features:
 
-* Multiple difficulty levels
 * PvP capability
 * Mobile friendliness
